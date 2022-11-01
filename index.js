@@ -40,20 +40,18 @@ const getData = async () => {
 
 // Listen for any kind of message. There are different kinds of
 // messages.
-bot.on('message', (msg) => {
-  if (msg == "espri yap") {
-    const chatId = msg.chat.id;
-    const resd = getData();
-    resd.then(x => {
-      bot.sendMessage(chatId, JSON.stringify(x.soru));
-      setTimeout(() => {
-        bot.sendMessage(chatId, JSON.stringify(x.cevap + " 😂"));
-      }, 500);
 
-    })
-  }
+bot.onText(/\/espri (.+)/, (msg, match) => {
+  const chatId = msg.chat.id;
+  const resd = getData();
+  resd.then(x => {
+    bot.sendMessage(chatId, JSON.stringify(x.soru));
+    setTimeout(() => {
+      bot.sendMessage(chatId, JSON.stringify(x.cevap + " 😂"));
+    }, 500);
+
+  })
 });
-
 
 app.listen(process.env.PORT, () => {
   console.log(`Express server is listening on ${process.env.PORT}`);
