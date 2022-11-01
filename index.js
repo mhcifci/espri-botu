@@ -12,16 +12,9 @@ dotenv.config();
 
 const token = process.env.TOKEN;
 
-// import axioconst TelegramBot = require('node-telegram-bot-api');
-
-// replace the value below with the Telegram token you receive from @BotFather
-
-// Create a bot that uses 'polling' to fetch new updates
 const bot = new TelegramBot(token, {
   polling: true
 });
-
-
 
 const getData = async () => {
   try {
@@ -30,16 +23,12 @@ const getData = async () => {
       console.log(result.data);
       return result.data;
     }
-    console.log('asdf');
+    //console.log('asdf');
 
   } catch (error) {
-    console.log(error);
+    //console.log(error);
   }
 };
-
-
-// Listen for any kind of message. There are different kinds of
-// messages.
 
 bot.onText(/\/espri/, (msg, match) => {
   const chatId = msg.chat.id;
@@ -53,6 +42,13 @@ bot.onText(/\/espri/, (msg, match) => {
   })
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`Express server is listening on ${process.env.PORT}`);
+bot.onText(/\/caylabizi/, (msg, match) => {
+  const chatId = msg.chat.id;
+  bot.sendPhoto(chatId, "https://trthaberstatic.cdn.wp.trt.com.tr/resimler/1474000/cay-istanbul-1475368.jpg");
+});
+
+
+bot.onText(/\/caylabizi/, (msg, match) => {
+  const chatId = msg.chat.id;
+  bot.sendPhoto(chatId, "https://trthaberstatic.cdn.wp.trt.com.tr/resimler/1474000/cay-istanbul-1475368.jpg");
 });
