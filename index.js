@@ -41,15 +41,17 @@ const getData = async () => {
 // Listen for any kind of message. There are different kinds of
 // messages.
 bot.on('message', (msg) => {
-  const chatId = msg.chat.id;
-  const resd = getData();
-  resd.then(x => {
-    bot.sendMessage(chatId, JSON.stringify(x.soru));
-    setTimeout(() => {
-      bot.sendMessage(chatId, JSON.stringify(x.cevap + " 😂"));
-    }, 500);
+  if (msg == "espri yap") {
+    const chatId = msg.chat.id;
+    const resd = getData();
+    resd.then(x => {
+      bot.sendMessage(chatId, JSON.stringify(x.soru));
+      setTimeout(() => {
+        bot.sendMessage(chatId, JSON.stringify(x.cevap + " 😂"));
+      }, 500);
 
-  })
+    })
+  }
 });
 
 
