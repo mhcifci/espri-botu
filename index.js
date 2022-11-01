@@ -1,12 +1,20 @@
 const TelegramBot = require('node-telegram-bot-api');
 const axios = require('axios');
-const express = require("express");
-const app = express();
+const express = require('express');
+
 const dotenv = require("dotenv");
+var cors = require("cors")
+const app = express();
+app.use(cors());
+app.use(express.json());
+app.options('*', cors());
+dotenv.config();
+
+const token = process.env.TOKEN;
+
 // import axioconst TelegramBot = require('node-telegram-bot-api');
 
 // replace the value below with the Telegram token you receive from @BotFather
-const token = '5408801300:AAGDGGTh92QQiUmKCx5qx2f8qvGrrwidGtQ';
 
 // Create a bot that uses 'polling' to fetch new updates
 const bot = new TelegramBot(token, {
@@ -17,7 +25,7 @@ const bot = new TelegramBot(token, {
 
 const getData = async () => {
   try {
-    const result = await axios.get('https://espriapi.azurewebsites.net/api/HttpTriggerCSharp?method=guldur');
+    const result = await axios.get(process.env.API_URL);
     if (result.status < 399) {
         console.log(result.data);
         return result.data;
@@ -34,9 +42,7 @@ const getData = async () => {
 // messages.
 bot.on('message', (msg) => {
     const chatId = msg.chat.id;
-    console.log('object');
     const resd = getData();
-    console.log(resd);
     resd.then(x=>{
         bot.sendMessage(chatId, JSON.stringify(x.soru));
         setTimeout(() => {
@@ -46,4 +52,7 @@ bot.on('message', (msg) => {
     })
 });
 
+app.listen(process.env.PORT, () => {
+  console.log(`Express server is listening on ${process.env.PORT}`);
+});
 
