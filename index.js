@@ -1,6 +1,8 @@
 const TelegramBot = require('node-telegram-bot-api');
 const axios = require('axios');
-
+const express = require("express");
+const app = express();
+const dotenv = require("dotenv");
 // import axioconst TelegramBot = require('node-telegram-bot-api');
 
 // replace the value below with the Telegram token you receive from @BotFather
@@ -10,6 +12,7 @@ const token = '5408801300:AAGDGGTh92QQiUmKCx5qx2f8qvGrrwidGtQ';
 const bot = new TelegramBot(token, {
     polling: true
 });
+
 
 
 const getData = async () => {
@@ -42,3 +45,5 @@ bot.on('message', (msg) => {
         
     })
 });
+
+
