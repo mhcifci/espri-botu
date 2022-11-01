@@ -46,9 +46,3 @@ bot.onText(/\/caylabizi/, (msg, match) => {
   const chatId = msg.chat.id;
   bot.sendPhoto(chatId, "https://trthaberstatic.cdn.wp.trt.com.tr/resimler/1474000/cay-istanbul-1475368.jpg");
 });
-
-
-bot.onText(/\/caylabizi/, (msg, match) => {
-  const chatId = msg.chat.id;
-  bot.sendPhoto(chatId, "https://trthaberstatic.cdn.wp.trt.com.tr/resimler/1474000/cay-istanbul-1475368.jpg");
-});
